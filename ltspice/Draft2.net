@@ -1,0 +1,68 @@
+* C:\Users\theac\OneDrive\Documents\GitHub\Lovers Rock\ltspice\Draft2.asc
+XU4 N011 N007 Vpow 0 N007 LT1001
+V1 Vs 0 SINE(0 50m {Freq}) AC 1
+Cin1 N011 Vs 100nf
+R1 Vref N011 1Meg
+Rout1 N010 N007 470
+C6 Vin N010 1µF
+XU5 Vin N005 Vpow 0 N006 LT1001
+R§Pot1 N006 N005 250K
+R7 N002 N005 10K
+D1 N005 N006 1N4148
+D2 N006 N005 1N4148
+C7 Vref N002 47nF
+C8 N006 N005 330pF
+XU6 N009 N003 Vpow 0 N004 LT1001
+C9 Vod N012 1µF
+C10 N004 N003 51pF
+R§Pot2 N004 N003 500K
+D3 N008 Vref 1N4148
+D4 Vref N008 1N4148
+R15 N012 N006 470
+R16 N009 Vref 1Meg
+Rpull1 0 Vs 1Meg
+R17 N003 Vod 1K
+V4 N001 0 9V
+R18 Vpow Vref 10K
+R19 Vref 0 10K
+C11 Vref 0 47µ
+R22 N008 N004 10K
+C17 Vpow 0 100µF
+D5 N001 Vpow D
+R28 Vin Vref 1Meg
+XU1 N015 N014 Vpow 0 N014 LT1001
+R3 Vref N015 1Meg
+C1 N015 N018 100n
+R4 N014 N018 100
+XU2 N021 N022 Vpow 0 N022 LT1001
+R6 Vref N021 1Meg
+R8 N022 N020 100
+C4 N020 Vref 4.7n
+XU3 N019 N016 Vpow 0 N017 LT1001
+R13 N017 N016 100K
+R21 Vvc N017 1K
+R23 N019 Vref 1Meg
+C5 Output Vvc 100n
+R2 N016 N018 10K
+R10 N016 N020 10K
+C12 N021 N020 4.7n
+C13 Vref N018 100n
+R5 N018 Vds 10K
+R9 N020 Vds 10K
+C3 Vds N008 1µ
+R12 Vref Vvc 10K
+R11 0 Output 1Meg
+.model D D
+.lib C:\Users\theac\OneDrive\Documents\LTspiceXVII\lib\cmp\standard.dio
+* Overdrive Stage
+* Distortion Stage
+* Post Distortion Filtering
+;ac dec 50 10 100K
+* Power / Input Stage
+* Volume Control
+.param Freq=300
+.step param Freq LIST 150 300 500 1K 2K 3k
+.tran 10m
+.lib LTC.lib
+.backanno
+.end
